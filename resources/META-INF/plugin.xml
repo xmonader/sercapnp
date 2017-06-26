@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.sercapnp</id>
   <name>SerCapnp</name>
-  <version>1.1</version>
+  <version>1.2</version>
   <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
 
   <description><![CDATA[
@@ -17,14 +17,14 @@
   <idea-version since-build="145.0"/>
 
   <extensions defaultExtensionNs="com.intellij">
-      <fileTypeFactory implementation="com.sercapnp.CapnpFileTypeFactory"/>
-      <syntaxHighlighter implementationClass="com.sercapnp.CapnpSyntaxHighlighter" />
-      <lang.syntaxHighlighterFactory key="Capnp" implementationClass="com.sercapnp.CapnpSyntaxHighlighterFactory"/>
+      <fileTypeFactory implementation="com.sercapnp.lang.CapnpFileTypeFactory"/>
+      <syntaxHighlighter implementationClass="com.sercapnp.lang.CapnpSyntaxHighlighter" />
+      <lang.syntaxHighlighterFactory key="Capnp" implementationClass="com.sercapnp.lang.CapnpSyntaxHighlighterFactory"/>
     <!-- Add your extensions here -->
   </extensions>
 
   <actions>
-      <action id="GenerateCapnpID" class="com.sercapnp.GenerateCapnpID" text="GenerateCapnpID"
+      <action id="GenerateCapnpID" class="com.sercapnp.actions.GenerateCapnpID" text="GenerateCapnpID"
               description="Generate capnp id">
           <keyboard-shortcut first-keystroke="control alt A" second-keystroke="G" keymap="$default"/>
           <add-to-group group-id="ToolsMenu" anchor="first" />

@@ -1,4 +1,4 @@
-package com.sercapnp;
+package com.sercapnp.lang;
 
 /**
  * Created by striky on 6/26/17.

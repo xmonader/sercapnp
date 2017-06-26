@@ -1,4 +1,4 @@
-package com.sercapnp;
+package com.sercapnp.lang;
 
 import com.intellij.lang.Language;
 import com.intellij.psi.tree.IElementType;

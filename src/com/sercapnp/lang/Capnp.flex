@@ -1,8 +1,9 @@
-package com.sercapnp;
+package com.sercapnp.lang;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.TokenType;
+import com.sercapnp.CapnpTypes;
 
 %%
 %class CapnpLexer
@@ -38,6 +39,11 @@ IDENTIFIER = [A-Za-z_][A-Za-z_0-9]*
     "Int16"                                         { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
     "Int32"                                         { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
     "Int64"                                         { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
+    "UInt8"                                         { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
+    "UInt16"                                        { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
+    "UInt32"                                        { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
+    "UInt64"                                        { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
+
     "Data"                                          { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
     "Text"                                          { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
     "List"                                          { yybegin(YYINITIAL); return CapnpTypes.TYPE; }

@@ -1,6 +1,5 @@
-package com.sercapnp;
+package com.sercapnp.lang;
 
-import com.intellij.lexer.Lexer;
 import com.intellij.lexer.FlexAdapter;
 
 import java.io.Reader;
