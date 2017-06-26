@@ -1,0 +1,34 @@
+<idea-plugin>
+  <id>com.sercapnp</id>
+  <name>SerCapnp</name>
+  <version>1.0</version>
+  <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
+
+  <description><![CDATA[
+  Capnp Id Generator
+    ]]></description>
+
+  <change-notes><![CDATA[
+  Initial release
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="145.0"/>
+
+  <extensions defaultExtensionNs="com.intellij">
+      <fileTypeFactory implementation="com.sercapnp.CapnpFileTypeFactory"/>
+      <syntaxHighlighter implementationClass="com.sercapnp.CapnpSyntaxHighlighter" />
+      <lang.syntaxHighlighterFactory key="Capnp" implementationClass="com.sercapnp.CapnpSyntaxHighlighterFactory"/>
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <actions>
+      <action id="GenerateCapnpID" class="com.sercapnp.GenerateCapnpID" text="GenerateCapnpID"
+              description="Generate capnp id">
+          <keyboard-shortcut first-keystroke="control alt A" second-keystroke="G" keymap="$default"/>
+          <add-to-group group-id="ToolsMenu" anchor="first" />
+      </action>
+  </actions>
+
+</idea-plugin>
