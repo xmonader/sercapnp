@@ -23,7 +23,10 @@ public class CapnpSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey KEY =
             createTextAttributesKey("KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey TYPE =
-            createTextAttributesKey("TYPE", DefaultLanguageHighlighterColors.CLASS_NAME);
+            createTextAttributesKey("TYPE", DefaultLanguageHighlighterColors.KEYWORD);
+
+    public static final TextAttributesKey IDENTIFIER =
+            createTextAttributesKey("IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
     public static final TextAttributesKey COMMENT =
             createTextAttributesKey("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
     public static final TextAttributesKey BAD_CHARACTER =
@@ -33,6 +36,8 @@ public class CapnpSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{SEPARATOR};
     private static final TextAttributesKey[] KEY_KEYS = new TextAttributesKey[]{KEY};
     private static final TextAttributesKey[] TYPE_KEYS = new TextAttributesKey[]{TYPE};
+    private static final TextAttributesKey[] IDENTIFIER_KEYS = new TextAttributesKey[]{IDENTIFIER};
+
     private static final TextAttributesKey[] COMMENT_KEYS = new TextAttributesKey[]{COMMENT};
     private static final TextAttributesKey[] EMPTY_KEYS = new TextAttributesKey[0];
 
@@ -45,9 +50,11 @@ public class CapnpSyntaxHighlighter extends SyntaxHighlighterBase {
     @NotNull
     @Override
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
-        System.out.println(tokenType);
         if (tokenType.equals(CapnpTypes.SEPARATOR)) {
             return SEPARATOR_KEYS;
+
+        } else if (tokenType.equals(CapnpTypes.IDENTIFIER)){
+            return IDENTIFIER_KEYS;
         } else if (tokenType.equals(CapnpTypes.KEYWORD)) {
             return KEY_KEYS;
         } else if (tokenType.equals(CapnpTypes.TYPE)) {

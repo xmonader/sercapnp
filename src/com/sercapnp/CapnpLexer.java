@@ -52,8 +52,11 @@ class CapnpLexer implements FlexLexer {
 
   /* The ZZ_CMAP_A table has 256 entries */
   static final char ZZ_CMAP_A[] = zzUnpackCMap(
-    "\11\0\1\1\1\4\2\0\1\3\22\0\1\1\2\0\1\2\27\0\1\5\1\0\1\5\45\0\1\12\1\0\1\16"+
-    "\3\0\1\14\3\0\1\17\1\13\1\15\2\0\1\10\1\6\1\7\1\11\212\0");
+    "\11\0\1\1\1\4\2\0\1\3\22\0\1\7\2\0\1\2\14\0\1\11\1\35\1\40\1\37\1\41\1\14"+
+    "\1\36\3\14\2\5\1\0\1\5\2\0\1\10\1\15\1\32\1\15\1\42\1\15\1\46\2\15\1\34\2"+
+    "\15\1\45\7\15\1\44\1\15\1\30\4\15\1\6\1\0\1\6\1\0\1\15\1\0\1\43\1\13\1\22"+
+    "\1\31\1\26\3\13\1\24\2\13\1\33\1\27\1\23\1\25\2\13\1\20\1\16\1\17\1\21\2\13"+
+    "\1\12\2\13\1\6\1\5\1\6\202\0");
 
   /** 
    * Translates DFA states to action switch labels.
@@ -61,11 +64,12 @@ class CapnpLexer implements FlexLexer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4\3\1\10\0\1\5"+
-    "\1\0";
+    "\1\0\1\1\1\2\1\3\1\4\2\5\1\1\13\6"+
+    "\2\7\12\6\1\0\11\6\1\7\2\6\1\7\1\10"+
+    "\6\6";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[18];
+    int [] result = new int[52];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -90,12 +94,16 @@ class CapnpLexer implements FlexLexer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\20\0\40\0\60\0\20\0\100\0\120\0\140"+
-    "\0\160\0\200\0\220\0\240\0\260\0\300\0\320\0\340"+
-    "\0\20\0\360";
+    "\0\0\0\47\0\116\0\165\0\47\0\47\0\116\0\234"+
+    "\0\303\0\352\0\u0111\0\u0138\0\u015f\0\u0186\0\u01ad\0\u01d4"+
+    "\0\u01fb\0\u0222\0\u0249\0\u0270\0\u0297\0\u02be\0\u02e5\0\u030c"+
+    "\0\u0333\0\u035a\0\u0381\0\u03a8\0\u03cf\0\u03f6\0\u041d\0\u0444"+
+    "\0\u046b\0\u0492\0\u04b9\0\u04e0\0\u0507\0\u052e\0\u0555\0\u057c"+
+    "\0\u05a3\0\u0444\0\u05ca\0\u05f1\0\303\0\303\0\u0618\0\u063f"+
+    "\0\u0666\0\u068d\0\u06b4\0\u06db";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[18];
+    int [] result = new int[52];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -118,15 +126,37 @@ class CapnpLexer implements FlexLexer {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\2\1\3\1\5\1\6\2\2"+
-    "\1\7\4\2\1\10\1\2\21\0\1\3\2\0\1\3"+
-    "\13\0\3\4\2\0\13\4\7\0\1\11\23\0\1\12"+
-    "\17\0\1\13\14\0\1\14\23\0\1\15\14\0\1\16"+
-    "\17\0\1\17\23\0\1\20\21\0\1\21\12\0\1\22"+
-    "\20\0\1\21\13\0\1\21\10\0";
+    "\1\2\1\3\1\4\1\2\1\3\1\5\1\6\1\7"+
+    "\1\10\1\2\2\11\1\2\1\11\1\12\2\11\1\13"+
+    "\4\11\1\14\1\11\1\15\1\11\1\16\1\11\1\17"+
+    "\5\2\1\20\1\11\1\21\1\22\1\23\50\0\1\3"+
+    "\2\0\1\3\2\0\1\3\37\0\3\4\2\0\42\4"+
+    "\11\0\1\24\2\0\1\25\20\0\5\25\16\0\36\11"+
+    "\11\0\6\11\1\26\27\11\11\0\12\11\1\27\23\11"+
+    "\11\0\12\11\1\30\23\11\11\0\14\11\1\31\21\11"+
+    "\11\0\14\11\1\32\21\11\11\0\12\11\1\33\23\11"+
+    "\11\0\32\11\1\34\3\11\11\0\15\11\1\35\20\11"+
+    "\11\0\13\11\1\36\22\11\11\0\22\11\1\37\13\11"+
+    "\11\0\1\25\1\40\1\0\1\25\20\0\5\25\16\0"+
+    "\1\25\2\0\1\25\20\0\5\25\16\0\7\11\1\41"+
+    "\26\11\11\0\13\11\1\42\22\11\11\0\10\11\1\43"+
+    "\25\11\11\0\13\11\1\44\22\11\11\0\14\11\1\45"+
+    "\21\11\11\0\6\11\1\46\27\11\11\0\6\11\1\47"+
+    "\27\11\11\0\1\11\1\50\34\11\11\0\5\11\1\50"+
+    "\30\11\11\0\14\11\1\51\21\11\11\0\4\52\1\0"+
+    "\12\52\1\0\1\52\1\0\1\52\1\0\5\52\1\0"+
+    "\1\52\14\0\10\11\1\53\25\11\11\0\14\11\1\54"+
+    "\21\11\11\0\16\11\1\55\17\11\11\0\20\11\1\56"+
+    "\15\11\11\0\22\11\1\56\13\11\11\0\24\11\1\57"+
+    "\1\60\1\61\7\11\11\0\32\11\1\56\3\11\11\0"+
+    "\6\11\1\56\27\11\11\0\32\11\1\62\3\11\11\0"+
+    "\11\11\1\63\24\11\11\0\12\11\1\55\23\11\11\0"+
+    "\25\11\1\56\10\11\11\0\30\11\1\56\5\11\11\0"+
+    "\27\11\1\56\6\11\11\0\6\11\1\64\27\11\11\0"+
+    "\6\11\1\55\27\11\11\0\25\11\1\60\1\61\7\11";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[256];
+    int [] result = new int[1794];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -164,10 +194,10 @@ class CapnpLexer implements FlexLexer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\2\1\1\11\3\1\10\0\1\11\1\0";
+    "\1\0\1\11\2\1\2\11\31\1\1\0\24\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[18];
+    int [] result = new int[52];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -468,26 +498,37 @@ class CapnpLexer implements FlexLexer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
-            { throw new Error("Illegal character <"+
-                                                        yytext()+">");
+            { return TokenType.DUMMY_HOLDER;
             }
-          case 6: break;
+          case 9: break;
           case 2: 
             { yybegin(YYINITIAL);  return TokenType.WHITE_SPACE;
             }
-          case 7: break;
+          case 10: break;
           case 3: 
             { yybegin(YYINITIAL);  return CapnpTypes.COMMENT;
             }
-          case 8: break;
+          case 11: break;
           case 4: 
             { yybegin(YYINITIAL);  return CapnpTypes.SEPARATOR;
             }
-          case 9: break;
+          case 12: break;
           case 5: 
+            { yybegin(YYINITIAL);  return TokenType.DUMMY_HOLDER;
+            }
+          case 13: break;
+          case 6: 
+            { yybegin(YYINITIAL);  return CapnpTypes.IDENTIFIER;
+            }
+          case 14: break;
+          case 7: 
             { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD;
             }
-          case 10: break;
+          case 15: break;
+          case 8: 
+            { yybegin(YYINITIAL); return CapnpTypes.TYPE;
+            }
+          case 16: break;
           default:
             zzScanError(ZZ_NO_MATCH);
           }

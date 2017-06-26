@@ -13,6 +13,7 @@ import com.intellij.psi.tree.IFileElementType;
         IElementType TYPE = new IElementType("TYPE", Language.ANY);
         IElementType SEPARATOR = new IElementType("SEPARATOR", Language.ANY);
         IElementType COMMENT = new IFileElementType("COMMENT", Language.ANY);
+        IElementType IDENTIFIER = new IFileElementType("IDENTIFIER", Language.ANY);
     }
 
 

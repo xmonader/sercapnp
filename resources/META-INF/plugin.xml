@@ -18,7 +18,8 @@
 
   <extensions defaultExtensionNs="com.intellij">
       <fileTypeFactory implementation="com.sercapnp.CapnpFileTypeFactory"/>
-      <lang.syntaxHighlighterFactory key="capnp" implementationClass="com.sercapnp.CapnpSyntaxHighlighterFactory"/>
+      <syntaxHighlighter implementationClass="com.sercapnp.CapnpSyntaxHighlighter" />
+      <lang.syntaxHighlighterFactory key="Capnp" implementationClass="com.sercapnp.CapnpSyntaxHighlighterFactory"/>
     <!-- Add your extensions here -->
   </extensions>
 
