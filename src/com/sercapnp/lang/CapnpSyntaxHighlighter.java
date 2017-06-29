@@ -23,10 +23,10 @@ public class CapnpSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey KEY =
             createTextAttributesKey("KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey TYPE =
-            createTextAttributesKey("TYPE", DefaultLanguageHighlighterColors.KEYWORD);
+            createTextAttributesKey("TYPE", DefaultLanguageHighlighterColors.CLASS_NAME);
 
     public static final TextAttributesKey IDENTIFIER =
-            createTextAttributesKey("IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
+            createTextAttributesKey("IDENTIFIER", DefaultLanguageHighlighterColors.INSTANCE_FIELD);
     public static final TextAttributesKey COMMENT =
             createTextAttributesKey("COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
     public static final TextAttributesKey BAD_CHARACTER =
