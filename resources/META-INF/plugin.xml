@@ -29,6 +29,9 @@ Updates to support more constructs in capnp
           <keyboard-shortcut first-keystroke="control alt A" second-keystroke="G" keymap="$default"/>
           <add-to-group group-id="ToolsMenu" anchor="first" />
       </action>
+      <action id="Capnp.New" class="com.sercapnp.actions.NewFileAction" text="Capnp File" description="Create new Capnp file">
+          <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
+      </action>
   </actions>
 
 </idea-plugin>
