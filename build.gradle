@@ -18,7 +18,9 @@ dependencies {
 
 intellij {
     version '2018.2.1'
+    intellij.updateSinceUntilBuild false
 }
+
 patchPluginXml {
     changeNotes """
       <h1>Changelog</h1>
