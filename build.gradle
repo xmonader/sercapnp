@@ -21,6 +21,11 @@ intellij {
 }
 patchPluginXml {
     changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+      <h1>Changelog</h1>
+      <ul>
+        <li>Add entry on create file action menu</li>
+        <li>Add gradle configurations</li>
+        <li>Works across Intellij IDEs</li>
+      </ul>
+      """
 }
