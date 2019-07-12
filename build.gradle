@@ -18,7 +18,7 @@ dependencies {
 
 intellij {
     version '2018.2.1'
-    intellij.updateSinceUntilBuild false
+    updateSinceUntilBuild false
 }
 
 patchPluginXml {
