@@ -1,6 +1,6 @@
 <idea-plugin>
-    <id>com.meetzli.sercapnp</id>
-    <name>Cap'n Proto Support</name>
+    <id>com.sercapnp</id>
+    <name>SerCapnp</name>
     <version>2.0</version>
     <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
 

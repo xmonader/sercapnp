@@ -33,7 +33,7 @@ intellijPlatform {
     buildSearchableOptions = false
 
     pluginConfiguration {
-        name = 'sercapnp'
+        name = 'SerCapnp'
         changeNotes = """
             <ul>
               <li>Updated for IntelliJ Platform 2025.1</li>
