@@ -21,9 +21,9 @@ public class CapnpParser implements PsiParser {
         while (!builder.eof()) {
             IElementType tokenType = builder.getTokenType();
 
-            if (tokenType == TokenType.DUMMY_HOLDER) {
-                builder.error("Unexpected character");
-            }
+//             if (tokenType == TokenType.DUMMY_HOLDER) {
+//                 builder.error("Unexpected character");
+//             }
 
             builder.advanceLexer();
         }
