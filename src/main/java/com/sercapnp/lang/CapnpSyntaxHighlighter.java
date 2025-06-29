@@ -2,6 +2,7 @@ package com.sercapnp.lang;
 
 /**
  * Created by striky on 6/26/17.
+ * Updated by meetzli on 6/29/25 for Intellij Platform 2025.1 compatibility
  */
 
 import com.intellij.lexer.Lexer;
@@ -52,7 +53,6 @@ public class CapnpSyntaxHighlighter extends SyntaxHighlighterBase {
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
         if (tokenType.equals(CapnpTypes.SEPARATOR)) {
             return SEPARATOR_KEYS;
-
         } else if (tokenType.equals(CapnpTypes.IDENTIFIER)){
             return IDENTIFIER_KEYS;
         } else if (tokenType.equals(CapnpTypes.KEYWORD)) {

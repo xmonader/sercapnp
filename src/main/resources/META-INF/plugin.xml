@@ -1,38 +1,53 @@
 <idea-plugin>
-  <id>com.sercapnp</id>
-  <name>SerCapnp</name>
-  <version>1.4</version>
-  <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
+    <id>com.sercapnp</id>
+    <name>SerCapnp</name>
+    <version>2.0</version>
+    <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
 
-  <description><![CDATA[
-  Capnp Support for Intellij
-    ]]></description>
+    <description><![CDATA[
+Capnp Support for Intellij-based IDEs
+]]></description>
 
-  <change-notes><![CDATA[
-Updates to support more constructs in capnp
-    ]]>
-  </change-notes>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="182.0"/>
-  <depends>com.intellij.modules.lang</depends>
+    <change-notes><![CDATA[
+    <ul>
+      <li>Updated for IntelliJ Platform 2025.1</li>
+      <li>Support for all JetBrains IDEs</li>
+      <li>Bug fixes and compatibility improvements</li>
+    </ul>
+    ]]></change-notes>
 
-  <extensions defaultExtensionNs="com.intellij">
-      <fileTypeFactory implementation="com.sercapnp.lang.CapnpFileTypeFactory"/>
-      <syntaxHighlighter implementationClass="com.sercapnp.lang.CapnpSyntaxHighlighter" />
-      <lang.syntaxHighlighterFactory key="Capnp" implementationClass="com.sercapnp.lang.CapnpSyntaxHighlighterFactory"/>
-    <!-- Add your extensions here -->
-  </extensions>
+    <idea-version since-build="221" until-build="251.*"/>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
 
-  <actions>
-      <action id="GenerateCapnpID" class="com.sercapnp.actions.GenerateCapnpID" text="GenerateCapnpID"
-              description="Generate capnp id">
-          <keyboard-shortcut first-keystroke="control alt A" second-keystroke="G" keymap="$default"/>
-          <add-to-group group-id="ToolsMenu" anchor="first" />
-      </action>
-      <action id="Capnp.New" class="com.sercapnp.actions.NewFileAction" text="Capnp File" description="Create new Capnp file">
-          <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
-      </action>
-  </actions>
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="Capnp file"
+                  implementationClass="com.sercapnp.lang.CapnpFileType"
+                  fieldName="INSTANCE"
+                  language="Capnp"
+                  extensions="capnp"/>
+        <lang.parserDefinition
+                language="Capnp"
+                implementationClass="com.sercapnp.lang.CapnpParserDefinition"/>
+        <lang.syntaxHighlighterFactory
+                language="Capnp"
+                implementationClass="com.sercapnp.lang.CapnpSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="com.sercapnp.lang.CapnpColorSettingsPage"/>
+    </extensions>
+
+
+
+
+    <actions>
+        <action id="GenerateCapnpID" class="com.sercapnp.actions.GenerateCapnpID" text="GenerateCapnpID"
+                description="Generate capnp id">
+            <keyboard-shortcut first-keystroke="control alt A" second-keystroke="G" keymap="$default"/>
+            <add-to-group group-id="ToolsMenu" anchor="first" />
+        </action>
+        <action id="Capnp.New" class="com.sercapnp.actions.NewFileAction" text="Capnp File" description="Create new Capnp file">
+            <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
+        </action>
+    </actions>
 
 </idea-plugin>
