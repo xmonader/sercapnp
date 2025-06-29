@@ -2,42 +2,20 @@
     <id>com.meetzli.sercapnp</id>
     <name>Cap'n Proto Support</name>
     <version>2.0</version>
-    <vendor url="https://github.com/meetzli">meetzli</vendor>
+    <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
 
     <description><![CDATA[
-<h2>Cap'n Proto language support for IntelliJ-based IDEs</h2>
-
-<p><strong>Updated fork</strong> of the original sercapnp plugin, compatible with modern IntelliJ Platform versions.</p>
-
-<h3>Features:</h3>
-<ul>
-  <li>✅ <strong>Syntax highlighting</strong> for .capnp files</li>
-  <li>✅ <strong>File type recognition</strong> and language support</li>
-  <li>✅ <strong>Cap'n Proto ID generator</strong> (Tools → Generate Capnp ID)</li>
-  <li>✅ <strong>Support for IntelliJ 2025.1+</strong> and RustRover</li>
-</ul>
-
-<h3>About Cap'n Proto:</h3>
-<p>Cap'n Proto is an insanely fast data interchange format and capability-based RPC system.
-<br/>Learn more at <a href="https://capnproto.org/">capnproto.org</a></p>
-
-<hr/>
-<p><em>Original work by Ahmed T. Youssef
-(<a href="https://github.com/xmonader/sercapnp">sercapnp</a>).
-This fork provides compatibility with modern IntelliJ Platform versions.</em></p>
+Capnp Support for Intellij-based IDEs
 ]]></description>
 
 
     <change-notes><![CDATA[
-    <h1>Version 2.0 - Updated Fork</h1>
     <ul>
-      <li>Updated for IntelliJ Platform 2025.1 and RustRover</li>
+      <li>Updated for IntelliJ Platform 2025.1</li>
       <li>Support for all JetBrains IDEs</li>
       <li>Bug fixes and compatibility improvements</li>
-      <li>Based on original work by Ahmed T. Youssef</li>
     </ul>
-    ]]>
-    </change-notes>
+    ]]></change-notes>
 
     <idea-version since-build="251" until-build="251.*"/>
     <depends>com.intellij.modules.platform</depends>
