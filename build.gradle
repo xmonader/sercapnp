@@ -1,33 +1,74 @@
+import org.jetbrains.grammarkit.tasks.GenerateLexerTask
+
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.3.12'
+    id 'org.jetbrains.intellij.platform' version '2.6.0'
+    id 'org.jetbrains.grammarkit' version '2022.3.2.2'
 }
 
-group 'xmonader'
-version '1.4'
+group 'meetzli'
+version '2.0'
 
-sourceCompatibility = 1.8
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 repositories {
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'junit:junit:4.13.2'
+
+    intellijPlatform {
+        intellijIdeaCommunity('2025.1')
+        instrumentationTools()
+    }
 }
 
-intellij {
-    version '2018.2.1'
-    updateSinceUntilBuild false
+intellijPlatform {
+    buildSearchableOptions = false
+
+    pluginConfiguration {
+        name = 'Cap\'n Proto Support'
+        changeNotes = """
+          <h1>Version 2.0 - Updated Fork</h1>
+          <ul>
+            <li>Updated for IntelliJ Platform 2025.1 and RustRover</li>
+            <li>Support for all IntelliJ-based IDEs</li>
+            <li>Bug fixes and compatibility improvements</li>
+            <li>Based on original work by Ahmed T. Youssef</li>
+          </ul>
+        """
+    }
+
+    pluginVerification {
+        ides {
+            recommended()
+        }
+    }
 }
 
-patchPluginXml {
-    changeNotes """
-      <h1>Changelog</h1>
-      <ul>
-        <li>Add entry on create file action menu</li>
-        <li>Add gradle configurations</li>
-        <li>Works across Intellij IDEs</li>
-      </ul>
-      """
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
+
+task cleanLexer(type: Delete) {
+    delete file('src/main/java/com/sercapnp/lang/CapnpLexer.java')
+}
+
+tasks.named('generateLexer', GenerateLexerTask).configure { task ->
+    task.sourceFile.set(layout.projectDirectory.file('src/main/java/com/sercapnp/lang/Capnp.flex'))
+    task.targetOutputDir.set(layout.buildDirectory.dir('generated-src/com/sercapnp/lang'))
+    task.targetClass.set('CapnpLexer')
+    task.purgeOldFiles.set(true)
+}
+
+sourceSets.main.java.srcDir layout.buildDirectory.dir('generated-src')
+
+tasks.named('generateLexer').configure { it.dependsOn cleanLexer }
+tasks.named('compileJava').configure { it.dependsOn tasks.named('generateLexer') }

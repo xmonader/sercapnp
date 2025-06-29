@@ -12,60 +12,53 @@ import com.sercapnp.lang.CapnpTypes;
 %function advance
 %type IElementType
 
-
 WHITE_SPACE=[\ \n\t]
 END_OF_LINE_COMMENT="#"[^\r\n]*
 SEPARATOR=["="|";"|":"|"->"]
-LB = ["{" | "["]
-RB = ["}" | "]"]
 CAPNPID = "@0x"[a-z0-9]+
 POSITION = "@"[0-9]+
-
 IDENTIFIER = [A-Za-z_][A-Za-z_0-9]*
 
 %%
-    {END_OF_LINE_COMMENT}                           { yybegin(YYINITIAL);  return CapnpTypes.COMMENT; }
+    {END_OF_LINE_COMMENT}                           { return CapnpTypes.COMMENT; }
 
-    "using"                                         { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
-    "import"                                        { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
-    "annotation"                                    { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
-    "struct"                                        { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
-    "union"                                         { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
-    "enum"                                          { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
-    "const"                                         { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
-    "interface"                                     { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
-    "extends  "                                     { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
+    "using"                                         { return CapnpTypes.KEYWORD; }
+    "import"                                        { return CapnpTypes.KEYWORD; }
+    "annotation"                                    { return CapnpTypes.KEYWORD; }
+    "struct"                                        { return CapnpTypes.KEYWORD; }
+    "union"                                         { return CapnpTypes.KEYWORD; }
+    "enum"                                          { return CapnpTypes.KEYWORD; }
+    "const"                                         { return CapnpTypes.KEYWORD; }
+    "interface"                                     { return CapnpTypes.KEYWORD; }
+    "extends"                                       { return CapnpTypes.KEYWORD; }
 
-    {POSITION}                                      { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
-    {CAPNPID}                                       { yybegin(YYINITIAL);  return CapnpTypes.KEYWORD; }
+    {POSITION}                                      { return CapnpTypes.KEYWORD; }
+    {CAPNPID}                                       { return CapnpTypes.KEYWORD; }
 
+    "Void"                                          { return CapnpTypes.TYPE; }
+    "Bool"                                          { return CapnpTypes.TYPE; }
+    "Int8"                                          { return CapnpTypes.TYPE; }
+    "Int16"                                         { return CapnpTypes.TYPE; }
+    "Int32"                                         { return CapnpTypes.TYPE; }
+    "Int64"                                         { return CapnpTypes.TYPE; }
+    "UInt8"                                         { return CapnpTypes.TYPE; }
+    "UInt16"                                        { return CapnpTypes.TYPE; }
+    "UInt32"                                        { return CapnpTypes.TYPE; }
+    "UInt64"                                        { return CapnpTypes.TYPE; }
+    "Float32"                                       { return CapnpTypes.TYPE; }
+    "Float64"                                       { return CapnpTypes.TYPE; }
+    "Data"                                          { return CapnpTypes.TYPE; }
+    "Text"                                          { return CapnpTypes.TYPE; }
+    "List"                                          { return CapnpTypes.TYPE; }
+    "group"                                         { return CapnpTypes.TYPE; }
 
-    "Void"                                          { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "Bool"                                          { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "Int8"                                          { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "Int16"                                         { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "Int32"                                         { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "Int64"                                         { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "UInt8"                                         { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "UInt16"                                        { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "UInt32"                                        { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "UInt64"                                        { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "Float32"                                       { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "Float64"                                       { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "Data"                                          { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "Text"                                          { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
-    "List"                                          { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
+    {IDENTIFIER}                                    { return CapnpTypes.IDENTIFIER; }
+    {SEPARATOR}                                     { return CapnpTypes.SEPARATOR; }
 
-    "group"                                         { yybegin(YYINITIAL); return CapnpTypes.TYPE; }
+    "{"                                             { return CapnpTypes.LEFT_BRACE; }
+    "}"                                             { return CapnpTypes.RIGHT_BRACE; }
+    "["                                             { return CapnpTypes.LEFT_BRACKET; }
+    "]"                                             { return CapnpTypes.RIGHT_BRACKET; }
 
-    {IDENTIFIER}                                    { yybegin(YYINITIAL);  return CapnpTypes.IDENTIFIER; }
-
-
-    {SEPARATOR}                                     { yybegin(YYINITIAL);  return CapnpTypes.SEPARATOR; }
-
-    {LB}                                            { yybegin(YYINITIAL);  return TokenType.DUMMY_HOLDER; }
-    {RB}                                            { yybegin(YYINITIAL);  return TokenType.DUMMY_HOLDER; }
-
-    ({WHITE_SPACE})+                                { yybegin(YYINITIAL);  return TokenType.WHITE_SPACE; }
-    [^]                                             { return TokenType.DUMMY_HOLDER; }
-
+    ({WHITE_SPACE})+                                { return TokenType.WHITE_SPACE; }
+    [^]                                             { return TokenType.BAD_CHARACTER; }

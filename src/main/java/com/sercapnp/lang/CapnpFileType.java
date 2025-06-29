@@ -2,6 +2,7 @@ package com.sercapnp.lang;
 
 /**
  * Created by striky on 6/26/17.
+ * Updated by meetzli on 6/29/25 for Intellij Platform 2025.1 compatibility
  */
 
 import com.intellij.openapi.fileTypes.LanguageFileType;
@@ -16,6 +17,7 @@ public class CapnpFileType extends LanguageFileType {
     private CapnpFileType() {
         super(CapnpLanguage.INSTANCE);
     }
+
 
     @NotNull
     @Override
@@ -32,7 +34,7 @@ public class CapnpFileType extends LanguageFileType {
     @NotNull
     @Override
     public String getDefaultExtension() {
-        return "Capnp";
+        return "capnp";
     }
 
     @Nullable
