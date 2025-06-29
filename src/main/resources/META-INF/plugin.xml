@@ -17,7 +17,7 @@ Capnp Support for Intellij-based IDEs
     </ul>
     ]]></change-notes>
 
-    <idea-version since-build="251" until-build="251.*"/>
+    <idea-version since-build="221" until-build="251.*"/>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
 
