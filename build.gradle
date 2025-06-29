@@ -33,15 +33,13 @@ intellijPlatform {
     buildSearchableOptions = false
 
     pluginConfiguration {
-        name = 'Cap\'n Proto Support'
+        name = 'sercapnp'
         changeNotes = """
-          <h1>Version 2.0 - Updated Fork</h1>
-          <ul>
-            <li>Updated for IntelliJ Platform 2025.1 and RustRover</li>
-            <li>Support for all IntelliJ-based IDEs</li>
-            <li>Bug fixes and compatibility improvements</li>
-            <li>Based on original work by Ahmed T. Youssef</li>
-          </ul>
+            <ul>
+              <li>Updated for IntelliJ Platform 2025.1</li>
+              <li>Support for all JetBrains IDEs</li>
+              <li>Bug fixes and compatibility improvements</li>
+            </ul>
         """
     }
 
