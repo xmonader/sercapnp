@@ -59,6 +59,8 @@ IDENTIFIER = [A-Za-z_][A-Za-z_0-9]*
     "}"                                             { return CapnpTypes.RIGHT_BRACE; }
     "["                                             { return CapnpTypes.LEFT_BRACKET; }
     "]"                                             { return CapnpTypes.RIGHT_BRACKET; }
+    "("                                             { return CapnpTypes.LEFT_PAREN; }
+    ")"                                             { return CapnpTypes.RIGHT_PAREN; }
 
     ({WHITE_SPACE})+                                { return TokenType.WHITE_SPACE; }
     [^]                                             { return TokenType.BAD_CHARACTER; }
