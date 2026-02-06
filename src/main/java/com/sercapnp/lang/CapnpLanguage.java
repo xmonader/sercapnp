@@ -1,6 +1,7 @@
 package com.sercapnp.lang;
 
 import com.intellij.lang.Language;
+import org.jetbrains.annotations.NotNull;
 
 public class CapnpLanguage extends Language {
     public static final CapnpLanguage INSTANCE = new CapnpLanguage();
@@ -10,7 +11,7 @@ public class CapnpLanguage extends Language {
     }
 
     @Override
-    public String getDisplayName() {
+    public @NotNull String getDisplayName() {
         return super.getDisplayName();
     }
 }

@@ -1,32 +1,14 @@
 <idea-plugin>
-    <id>com.sercapnp</id>
-    <name>SerCapnp</name>
-    <version>2.0</version>
-    <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
-
-    <description><![CDATA[
-Capnp Support for Intellij-based IDEs
-]]></description>
-
-
-    <change-notes><![CDATA[
-    <ul>
-      <li>Updated for IntelliJ Platform 2025.1</li>
-      <li>Support for all JetBrains IDEs</li>
-      <li>Bug fixes and compatibility improvements</li>
-    </ul>
-    ]]></change-notes>
-
-    <idea-version since-build="221" until-build="251.*"/>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileType name="Capnp file"
-                  implementationClass="com.sercapnp.lang.CapnpFileType"
-                  fieldName="INSTANCE"
-                  language="Capnp"
-                  extensions="capnp"/>
+        <fileType
+                name="Capnp file"
+                implementationClass="com.sercapnp.lang.CapnpFileType"
+                fieldName="INSTANCE"
+                language="Capnp"
+                extensions="capnp"/>
         <lang.parserDefinition
                 language="Capnp"
                 implementationClass="com.sercapnp.lang.CapnpParserDefinition"/>
@@ -36,16 +18,14 @@ Capnp Support for Intellij-based IDEs
         <colorSettingsPage implementation="com.sercapnp.lang.CapnpColorSettingsPage"/>
     </extensions>
 
-
-
-
     <actions>
         <action id="GenerateCapnpID" class="com.sercapnp.actions.GenerateCapnpID" text="GenerateCapnpID"
                 description="Generate capnp id">
             <keyboard-shortcut first-keystroke="control alt A" second-keystroke="G" keymap="$default"/>
-            <add-to-group group-id="ToolsMenu" anchor="first" />
+            <add-to-group group-id="ToolsMenu" anchor="first"/>
         </action>
-        <action id="Capnp.New" class="com.sercapnp.actions.NewFileAction" text="Capnp File" description="Create new Capnp file">
+        <action id="Capnp.New" class="com.sercapnp.actions.NewFileAction" text="Capnp File"
+                description="Create new Capnp file">
             <add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewFromTemplate"/>
         </action>
     </actions>
