@@ -16,8 +16,6 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAttributesKey;
 
-
-
 public class CapnpSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey SEPARATOR =
             createTextAttributesKey("SIMPLE_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN);
@@ -50,7 +48,7 @@ public class CapnpSyntaxHighlighter extends SyntaxHighlighterBase {
 
     @NotNull
     @Override
-    public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
+    public TextAttributesKey @NotNull [] getTokenHighlights(IElementType tokenType) {
         if (tokenType.equals(CapnpTypes.SEPARATOR)) {
             return SEPARATOR_KEYS;
         } else if (tokenType.equals(CapnpTypes.IDENTIFIER)){

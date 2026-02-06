@@ -1,57 +1,117 @@
 import org.jetbrains.grammarkit.tasks.GenerateLexerTask
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
+import org.jetbrains.intellij.platform.gradle.models.ProductRelease
 
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '1.17.4'
-    id 'org.jetbrains.grammarkit' version '2021.2.1'
+    id 'org.jetbrains.intellij.platform' version '2.11.0'
+    id 'org.jetbrains.grammarkit' version '2023.3.0.1'
 }
 
-group 'xmonader'
-version '2.0'
+group = 'xmonader'
+version = '3.0'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 repositories {
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
+    intellijPlatform {
+        intellijIdea "2025.3.2"
+    }
 }
 
-intellij {
-    version.set('2022.1.4')
-    type.set('IC')
+intellijPlatform {
+    buildSearchableOptions = true
+    instrumentCode = true
+    projectName = "SerCapnp"
+
+    //this is used internally by the intelij platform plugin, we can safely ignore groovy not understanding it
+    //noinspection GroovyAssignabilityCheck
+    pluginConfiguration {
+        id = "com.sercapnp"
+        name = "SerCapnp"
+        description = "Adds Capnp Support for Intellij-based IDEs (https://capnproto.org/)"
+        changeNotes = """
+            <ul>
+              <li>Updated to IntelliJ Platform Gradle Plugin v2</li>
+            </ul>
+            """.stripIndent(true)
+
+        ideaVersion {
+            sinceBuild.set("221")
+        }
+
+        vendor {
+            name = "xmonader"
+            email = "xmonader@gmail.com"
+            url = "https://github.com/xmonader"
+        }
+
+    }
+
+    //this is used internally by the intelij platform plugin, we can safely ignore groovy not understanding it
+    //noinspection GroovyAssignabilityCheck
+    pluginVerification {
+        ides {
+            select {
+                it.types = [IntelliJPlatformType.AndroidStudio,
+                            IntelliJPlatformType.CLion,
+                            IntelliJPlatformType.DataGrip,
+                            IntelliJPlatformType.DataSpell,
+                            IntelliJPlatformType.FleetBackend,
+                            IntelliJPlatformType.Gateway,
+                            IntelliJPlatformType.GoLand,
+                            IntelliJPlatformType.JetBrainsClient,
+                            IntelliJPlatformType.RubyMine,
+                            IntelliJPlatformType.RustRover,
+                            IntelliJPlatformType.PhpStorm,
+                            IntelliJPlatformType.Writerside,
+                            IntelliJPlatformType.WebStorm]
+                it.channels = [ProductRelease.Channel.RELEASE]
+                it.sinceBuild = '242'
+            }
+            select {
+                it.types = [IntelliJPlatformType.IntellijIdeaCommunity,
+                            IntelliJPlatformType.IntellijIdeaUltimate,
+                            IntelliJPlatformType.PyCharmCommunity,
+                            IntelliJPlatformType.PyCharmCommunity]
+                it.channels = [ProductRelease.Channel.RELEASE]
+                it.sinceBuild = '242'
+                it.untilBuild = '252'
+            }
+            select {
+                it.types = [IntelliJPlatformType.IntellijIdea,
+                            IntelliJPlatformType.PyCharm]
+                it.channels = [ProductRelease.Channel.RELEASE]
+                it.sinceBuild = '252'
+            }
+        }
+    }
+
 }
 
-patchPluginXml {
-    sinceBuild.set('221')
-    untilBuild.set('')
-    changeNotes.set("""
-        <ul>
-          <li>Updated for IntelliJ Platform 2022.1+ compatibility</li>
-          <li>Support for all modern JetBrains IDEs (2022-2025)</li>
-          <li>Fixed syntax highlighter registration issue</li>
-          <li>Bug fixes and compatibility improvements</li>
-        </ul>
-    """)
-}
-
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
-task cleanLexer(type: Delete) {
+tasks.register('cleanLexer', Delete) {
     delete file('build/generated-src/com/sercapnp/lang/CapnpLexer.java')
 }
 
 tasks.named('generateLexer', GenerateLexerTask).configure { task ->
-    task.source       = 'src/main/java/com/sercapnp/lang/Capnp.flex'
-    task.targetDir    = 'build/generated-src/com/sercapnp/lang'
-    task.targetClass  = 'CapnpLexer'
+    task.sourceFile = file('src/main/java/com/sercapnp/lang/Capnp.flex')
+    task.targetOutputDir = layout.buildDirectory.dir('generated-src/com/sercapnp/lang')
+    task.targetClass = 'CapnpLexer'
     task.purgeOldFiles = true
 }
 

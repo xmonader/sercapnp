@@ -2,6 +2,7 @@ package com.sercapnp.lang;
 
 /**
  * Created by meetzli on 6/29/25.
+ * Patched by lilyslvr on 2/5/26 for Intellij Platform v2 Compatability
  */
 
 import com.intellij.openapi.editor.colors.TextAttributesKey;
@@ -39,14 +40,15 @@ public class CapnpColorSettingsPage implements ColorSettingsPage {
     @NotNull
     @Override
     public String getDemoText() {
-        return "# Cap'n Proto example\n" +
-               "@0x85150b117366d14b;\n" +
-               "\n" +
-               "struct Person {\n" +
-               "  id @0 :UInt32;\n" +
-               "  name @1 :Text;\n" +
-               "  email @2 :Text;\n" +
-               "}";
+        return """
+                # Cap'n Proto example
+                @0x85150b117366d14b;
+                
+                struct Person {
+                  id @0 :UInt32;
+                  name @1 :Text;
+                  email @2 :Text;
+                }""";
     }
 
     @Nullable
@@ -57,13 +59,13 @@ public class CapnpColorSettingsPage implements ColorSettingsPage {
 
     @NotNull
     @Override
-    public AttributesDescriptor[] getAttributeDescriptors() {
+    public AttributesDescriptor @NotNull [] getAttributeDescriptors() {
         return DESCRIPTORS;
     }
 
     @NotNull
     @Override
-    public ColorDescriptor[] getColorDescriptors() {
+    public ColorDescriptor @NotNull [] getColorDescriptors() {
         return ColorDescriptor.EMPTY_ARRAY;
     }
 

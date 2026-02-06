@@ -16,26 +16,27 @@ public class GenerateCapnpID extends AnAction {
     @Override
     public void actionPerformed(AnActionEvent e) {
         //Get all the required data from data keys
-        final Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
-        final Project project = e.getRequiredData(CommonDataKeys.PROJECT);
+        final Editor editor = e.getData(CommonDataKeys.EDITOR);
+        final Project project = e.getData(CommonDataKeys.PROJECT);
+
+        if (editor == null || project == null) {
+            return;
+        }
+
         //Access document, caret, and selection
         final Document document = editor.getDocument();
         final SelectionModel selectionModel = editor.getSelectionModel();
 
-        final int start = selectionModel.getSelectionStart();
-        final int end = selectionModel.getSelectionEnd();
         //New instance of Runnable to make a replacement
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                //  return hex(random.randint(0, 2 ** 64) | 1 << 63)
-                // from 0 to 64
-                BigInteger rand = new BigInteger(64, new Random());
-                rand = rand.or(new BigInteger("1").shiftLeft(63));
-                String capnpId = rand.toString(16);
-                document.setText( String.format("@0x%s; \n\n", capnpId) + document.getText());
-            }
+        Runnable runnable = () -> {
+            //  return hex(random.randint(0, 2 ** 64) | 1 << 63)
+            // from 0 to 64
+            BigInteger rand = new BigInteger(64, new Random());
+            rand = rand.or(new BigInteger("1").shiftLeft(63));
+            String capnpId = rand.toString(16);
+            document.setText( String.format("@0x%s; \n\n", capnpId) + document.getText());
         };
+
         //Making the replacement
         WriteCommandAction.runWriteCommandAction(project, runnable);
         selectionModel.removeSelection();

@@ -4,7 +4,6 @@ package com.sercapnp.lang;
  * Created by striky on 6/26/17.
  */
 
-
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;

@@ -1,8 +1,6 @@
 package com.sercapnp.lang;
 
-import com.intellij.lang.Language;
 import com.intellij.psi.tree.IElementType;
-import com.intellij.psi.tree.IFileElementType;
 
 /**
  * Created by striky on 6/26/17.

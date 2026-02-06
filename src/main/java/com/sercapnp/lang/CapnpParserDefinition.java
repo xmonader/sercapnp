@@ -48,15 +48,15 @@ public class CapnpParserDefinition implements ParserDefinition {
     }
 
     @Override
-    public IFileElementType getFileNodeType() {
+    public @NotNull IFileElementType getFileNodeType() {
         return FILE;
     }
 
-    public PsiFile createFile(FileViewProvider viewProvider) {
+    public @NotNull PsiFile createFile(@NotNull FileViewProvider viewProvider) {
         return new CapnpFile(viewProvider);
     }
 
-    public SpaceRequirements spaceExistanceTypeBetweenTokens(ASTNode left, ASTNode right) {
+    public @NotNull SpaceRequirements spaceExistenceTypeBetweenTokens(ASTNode left, ASTNode right) {
         return SpaceRequirements.MAY;
     }
 

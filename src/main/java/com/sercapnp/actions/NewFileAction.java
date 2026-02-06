@@ -15,6 +15,6 @@ public class NewFileAction extends CreateFileAction implements DumbAware {
     }
 
     public NewFileAction() {
-        super(FILE_TYPE.getName(), "", null);
+        super(FILE_TYPE::getName, FILE_TYPE::getDescription, FILE_TYPE::getIcon);
     }
 }
