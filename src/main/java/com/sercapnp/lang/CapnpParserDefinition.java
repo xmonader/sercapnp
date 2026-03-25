@@ -36,9 +36,11 @@ public class CapnpParserDefinition implements ParserDefinition {
         return COMMENTS;
     }
 
+    public static final TokenSet STRINGS = TokenSet.create(CapnpTypes.STRING);
+
     @NotNull
     public TokenSet getStringLiteralElements() {
-        return TokenSet.EMPTY;
+        return STRINGS;
     }
 
     @NotNull

@@ -12,15 +12,30 @@ import com.sercapnp.lang.CapnpTypes;
 %function advance
 %type IElementType
 
-WHITE_SPACE=[\ \n\t]
+%state STRING_STATE
+
+WHITE_SPACE=[ \n\t\r]+
 END_OF_LINE_COMMENT="#"[^\r\n]*
-SEPARATOR=["="|";"|":"|"->"]
-CAPNPID = "@0x"[a-z0-9]+
+CAPNPID = "@0x"[a-fA-F0-9]+
 POSITION = "@"[0-9]+
+HEX_NUMBER = "0x"[a-fA-F0-9]+
+FLOAT_NUMBER = [0-9]+"."[0-9]+([eE][+-]?[0-9]+)?
+INT_NUMBER = [0-9]+
 IDENTIFIER = [A-Za-z_][A-Za-z_0-9]*
 
 %%
+
+<STRING_STATE> {
+    \"                                              { yybegin(YYINITIAL); return CapnpTypes.STRING; }
+    \\[^\r\n]                                       { }
+    [^\"\\\r\n]+                                    { }
+    [\r\n]                                          { yybegin(YYINITIAL); return CapnpTypes.STRING; }
+}
+
+<YYINITIAL> {
     {END_OF_LINE_COMMENT}                           { return CapnpTypes.COMMENT; }
+
+    \"                                              { yybegin(STRING_STATE); }
 
     "using"                                         { return CapnpTypes.KEYWORD; }
     "import"                                        { return CapnpTypes.KEYWORD; }
@@ -32,8 +47,14 @@ IDENTIFIER = [A-Za-z_][A-Za-z_0-9]*
     "interface"                                     { return CapnpTypes.KEYWORD; }
     "extends"                                       { return CapnpTypes.KEYWORD; }
 
-    {POSITION}                                      { return CapnpTypes.KEYWORD; }
-    {CAPNPID}                                       { return CapnpTypes.KEYWORD; }
+    "true"                                          { return CapnpTypes.CONSTANT; }
+    "false"                                         { return CapnpTypes.CONSTANT; }
+    "void"                                          { return CapnpTypes.CONSTANT; }
+    "inf"                                           { return CapnpTypes.CONSTANT; }
+    "nan"                                           { return CapnpTypes.CONSTANT; }
+
+    {CAPNPID}                                       { return CapnpTypes.CAPNPID; }
+    {POSITION}                                      { return CapnpTypes.POSITION; }
 
     "Void"                                          { return CapnpTypes.TYPE; }
     "Bool"                                          { return CapnpTypes.TYPE; }
@@ -50,15 +71,30 @@ IDENTIFIER = [A-Za-z_][A-Za-z_0-9]*
     "Data"                                          { return CapnpTypes.TYPE; }
     "Text"                                          { return CapnpTypes.TYPE; }
     "List"                                          { return CapnpTypes.TYPE; }
+    "AnyPointer"                                    { return CapnpTypes.TYPE; }
     "group"                                         { return CapnpTypes.TYPE; }
 
     {IDENTIFIER}                                    { return CapnpTypes.IDENTIFIER; }
-    {SEPARATOR}                                     { return CapnpTypes.SEPARATOR; }
+
+    {HEX_NUMBER}                                    { return CapnpTypes.NUMBER; }
+    {FLOAT_NUMBER}                                  { return CapnpTypes.NUMBER; }
+    {INT_NUMBER}                                    { return CapnpTypes.NUMBER; }
+
+    ";"                                             { return CapnpTypes.SEPARATOR; }
+    ":"                                             { return CapnpTypes.SEPARATOR; }
+    "="                                             { return CapnpTypes.SEPARATOR; }
+    "->"                                            { return CapnpTypes.SEPARATOR; }
+    ","                                             { return CapnpTypes.SEPARATOR; }
+    "."                                             { return CapnpTypes.SEPARATOR; }
+    "$"                                             { return CapnpTypes.SEPARATOR; }
 
     "{"                                             { return CapnpTypes.LEFT_BRACE; }
     "}"                                             { return CapnpTypes.RIGHT_BRACE; }
     "["                                             { return CapnpTypes.LEFT_BRACKET; }
     "]"                                             { return CapnpTypes.RIGHT_BRACKET; }
+    "("                                             { return CapnpTypes.LEFT_PAREN; }
+    ")"                                             { return CapnpTypes.RIGHT_PAREN; }
 
-    ({WHITE_SPACE})+                                { return TokenType.WHITE_SPACE; }
+    {WHITE_SPACE}                                   { return TokenType.WHITE_SPACE; }
     [^]                                             { return TokenType.BAD_CHARACTER; }
+}

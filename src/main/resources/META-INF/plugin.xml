@@ -1,23 +1,33 @@
 <idea-plugin>
     <id>com.sercapnp</id>
     <name>SerCapnp</name>
-    <version>2.0</version>
+    <version>3.0</version>
     <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
 
     <description><![CDATA[
-Capnp Support for Intellij-based IDEs
+<h2>Cap'n Proto Language Support</h2>
+<p>Full-featured Cap'n Proto (.capnp) schema language support for IntelliJ-based IDEs.</p>
+<h3>Features</h3>
+<ul>
+  <li><b>Syntax highlighting</b> — keywords, types, identifiers, strings, numbers, constants, comments, unique IDs, ordinals</li>
+  <li><b>Bracket matching</b> — auto-matching for <code>{}</code>, <code>[]</code>, <code>()</code></li>
+  <li><b>Comment toggling</b> — use Ctrl+/ to toggle <code>#</code> line comments</li>
+  <li><b>Code folding</b> — collapse struct, enum, and interface blocks</li>
+  <li><b>Cap'n Proto ID generation</b> — generate unique 64-bit schema IDs (Ctrl+Alt+A, G)</li>
+  <li><b>New file action</b> — File → New → Capnp File</li>
+  <li><b>Color settings</b> — fully customizable syntax colors via Settings → Editor → Color Scheme → Cap'n Proto</li>
+</ul>
 ]]></description>
-
 
     <change-notes><![CDATA[
     <ul>
-      <li>Updated for IntelliJ Platform 2025.1</li>
-      <li>Support for all JetBrains IDEs</li>
-      <li>Bug fixes and compatibility improvements</li>
+      <li><b>3.0</b>: Major update — string, number, constant highlighting; comment toggling; brace matching; code folding; AnyPointer type; fixed lexer</li>
+      <li><b>2.0</b>: Updated for IntelliJ Platform 2025.1</li>
+      <li><b>1.0</b>: Initial release with syntax highlighting and ID generation</li>
     </ul>
     ]]></change-notes>
 
-    <idea-version since-build="221" until-build="251.*"/>
+    <idea-version since-build="221"/>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
 
@@ -33,11 +43,17 @@ Capnp Support for Intellij-based IDEs
         <lang.syntaxHighlighterFactory
                 language="Capnp"
                 implementationClass="com.sercapnp.lang.CapnpSyntaxHighlighterFactory"/>
+        <lang.commenter
+                language="Capnp"
+                implementationClass="com.sercapnp.lang.CapnpCommenter"/>
+        <lang.braceMatcher
+                language="Capnp"
+                implementationClass="com.sercapnp.lang.CapnpBraceMatcher"/>
+        <lang.foldingBuilder
+                language="Capnp"
+                implementationClass="com.sercapnp.lang.CapnpFoldingBuilder"/>
         <colorSettingsPage implementation="com.sercapnp.lang.CapnpColorSettingsPage"/>
     </extensions>
-
-
-
 
     <actions>
         <action id="GenerateCapnpID" class="com.sercapnp.actions.GenerateCapnpID" text="GenerateCapnpID"

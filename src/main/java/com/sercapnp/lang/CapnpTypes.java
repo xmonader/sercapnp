@@ -17,6 +17,13 @@ public interface CapnpTypes {
     IElementType RIGHT_BRACE = new CapnpTokenType("RIGHT_BRACE");
     IElementType LEFT_BRACKET = new CapnpTokenType("LEFT_BRACKET");
     IElementType RIGHT_BRACKET = new CapnpTokenType("RIGHT_BRACKET");
+    IElementType LEFT_PAREN = new CapnpTokenType("LEFT_PAREN");
+    IElementType RIGHT_PAREN = new CapnpTokenType("RIGHT_PAREN");
+    IElementType STRING = new CapnpTokenType("STRING");
+    IElementType NUMBER = new CapnpTokenType("NUMBER");
+    IElementType CONSTANT = new CapnpTokenType("CONSTANT");
+    IElementType CAPNPID = new CapnpTokenType("CAPNPID");
+    IElementType POSITION = new CapnpTokenType("POSITION");
 }
 
 
