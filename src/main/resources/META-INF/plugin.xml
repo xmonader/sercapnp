@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.sercapnp</id>
     <name>SerCapnp</name>
-    <version>3.0</version>
+    <version>4.0</version>
     <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
 
     <description><![CDATA[
@@ -9,6 +9,9 @@
 <p>Full-featured Cap'n Proto (.capnp) schema language support for IntelliJ-based IDEs.</p>
 <h3>Features</h3>
 <ul>
+  <li><b>Go to definition</b> — Ctrl+Click on any type name to jump to its struct/enum/interface definition, even across imported files</li>
+  <li><b>Ordinal auto-increment</b> — type <code>@</code> after a field name and the next ordinal number is inserted automatically</li>
+  <li><b>Code completion</b> — built-in types (UInt64, List, Text...), keywords, user-defined types, imported types, annotation targets, constants</li>
   <li><b>Syntax highlighting</b> — keywords, types, identifiers, strings, numbers, constants, comments, unique IDs, ordinals</li>
   <li><b>Bracket matching</b> — auto-matching for <code>{}</code>, <code>[]</code>, <code>()</code></li>
   <li><b>Comment toggling</b> — use Ctrl+/ to toggle <code>#</code> line comments</li>
@@ -21,6 +24,7 @@
 
     <change-notes><![CDATA[
     <ul>
+      <li><b>4.0</b>: Code completion — built-in types, keywords, user-defined types from current file and imports, annotation names/targets, constants, import paths. Go to definition (Ctrl+Click cross-file navigation); ordinal auto-increment (@N auto-numbering)</li>
       <li><b>3.0</b>: Major update — string, number, constant highlighting; comment toggling; brace matching; code folding; AnyPointer type; fixed lexer</li>
       <li><b>2.0</b>: Updated for IntelliJ Platform 2025.1</li>
       <li><b>1.0</b>: Initial release with syntax highlighting and ID generation</li>
@@ -53,6 +57,13 @@
                 language="Capnp"
                 implementationClass="com.sercapnp.lang.CapnpFoldingBuilder"/>
         <colorSettingsPage implementation="com.sercapnp.lang.CapnpColorSettingsPage"/>
+        <completion.contributor
+                language="Capnp"
+                implementationClass="com.sercapnp.lang.CapnpCompletionContributor"/>
+        <gotoDeclarationHandler
+                implementation="com.sercapnp.lang.CapnpGotoDeclarationHandler"/>
+        <typedHandler
+                implementation="com.sercapnp.lang.CapnpOrdinalTypedHandler"/>
     </extensions>
 
     <actions>
