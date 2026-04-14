@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.sercapnp</id>
     <name>SerCapnp</name>
-    <version>5.0</version>
+    <version>4.0</version>
     <vendor email="xmonader@gmail.com" url="https://github.com/xmonader">xmonader</vendor>
 
     <description><![CDATA[
@@ -24,8 +24,7 @@
 
     <change-notes><![CDATA[
     <ul>
-      <li><b>5.0</b>: Go to definition (Ctrl+Click cross-file navigation); ordinal auto-increment (@N auto-numbering)</li>
-      <li><b>4.0</b>: Code completion — built-in types, keywords, user-defined types from current file and imports, annotation names/targets, constants, import paths</li>
+      <li><b>4.0</b>: Code completion — built-in types, keywords, user-defined types from current file and imports, annotation names/targets, constants, import paths. Go to definition (Ctrl+Click cross-file navigation); ordinal auto-increment (@N auto-numbering)</li>
       <li><b>3.0</b>: Major update — string, number, constant highlighting; comment toggling; brace matching; code folding; AnyPointer type; fixed lexer</li>
       <li><b>2.0</b>: Updated for IntelliJ Platform 2025.1</li>
       <li><b>1.0</b>: Initial release with syntax highlighting and ID generation</li>
